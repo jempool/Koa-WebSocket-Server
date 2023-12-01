@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "koa": "^2.14.2",
+    "koa-bodyparser": "^4.4.1",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^12.0.1",
+    "mongoose": "^8.0.2",
+    "socket.io": "^4.7.2",
+    "web-streams-polyfill": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.12",
+    "@types/koa__cors": "^4.0.3",
+    "@types/koa-bodyparser": "^4.3.12",
+    "@types/koa-json": "^2.0.23",
+    "@types/koa-logger": "^3.1.5",
+    "@types/koa-router": "^7.4.8",
+    "@types/node": "^20.10.0"
+  }
+}
