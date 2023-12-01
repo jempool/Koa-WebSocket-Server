@@ -19,7 +19,9 @@ app.use(cors());
 
 // import { authRouter } from "./routes/auth";
 const messageController = require("./controllers/message.controller");
+const authController = require("./controllers/auth.controller");
 messageController(router);
+authController(router);
 
 // Middlewares
 app.use(json());
