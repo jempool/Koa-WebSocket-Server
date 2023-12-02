@@ -2,13 +2,13 @@
 
 import { Server } from "socket.io";
 
-const dbService = require("../services/message.service");
-const {
+import dbService from "../services/message.service";
+import {
   WEBSOCKETS_CHAT_EVENT,
   WEBSOCKETS_TYPING_EVENT,
-} = require("./../utils/constants.js");
+} from "./../utils/constants.js";
 
-module.exports = async function (httpServer) {
+export default async function (httpServer) {
   const io = new Server(httpServer, {
     cors: {
       origin: "*",
@@ -35,4 +35,4 @@ module.exports = async function (httpServer) {
       console.error("Socket error:", error);
     });
   });
-};
+}

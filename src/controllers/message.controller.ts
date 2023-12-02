@@ -1,9 +1,10 @@
-const messageService = require("../services/message.service");
+import messageService from "../services/message.service";
 import { Message } from "../interfaces/message";
 
-module.exports = (router) => {
+export default (router) => {
   router.get("/chat/history", async (ctx, next) => {
-    ctx.body = await (<Message[]>messageService.getAllMessages());
+    const messages: Message[] = await messageService.getAllMessages();
+    ctx.body = messages;
     await next();
   });
 };

@@ -1,6 +1,6 @@
-const { Message } = require("../models/message");
+import { Message } from "../models/message";
 
-module.exports = {
+export default {
   getAllMessages: async function () {
     return await Message.find();
   },

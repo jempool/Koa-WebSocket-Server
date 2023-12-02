@@ -1,14 +1,15 @@
-"use strict";
+import { User } from "../models/user";
 
-const { User } = require("../models/user.js");
+const getUserByEmail = async (email: string) => {
+  return await User.findOne({ email });
+};
 
-module.exports = {
-  getUserByEmail: async function (email) {
-    return await User.findOne({ email });
-  },
+const createUser = async (user: typeof User) => {
+  const newUser = new User({ ...user });
+  return await newUser.save();
+};
 
-  createUser: async function (user) {
-    const newUser = new User({ ...user });
-    return await newUser.save();
-  },
+export default {
+  getUserByEmail,
+  createUser,
 };

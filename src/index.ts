@@ -8,8 +8,9 @@ import * as bodyParser from "koa-bodyparser";
 import * as cors from "@koa/cors";
 
 import { PORT, DATABASE_URL, DATABASE_NAME } from "./utils/constants";
-
-const socketIO = require("./webSockets/websockets");
+import socketIO from "./webSockets/websockets";
+import messageController from "./controllers/message.controller";
+import authController from "./controllers/auth.controller";
 
 const app = new Koa();
 const router = new Router();
@@ -17,9 +18,7 @@ const router = new Router();
 // Enable CORS for all routes
 app.use(cors());
 
-// import { authRouter } from "./routes/auth";
-const messageController = require("./controllers/message.controller");
-const authController = require("./controllers/auth.controller");
+// Controllers
 messageController(router);
 authController(router);
 
