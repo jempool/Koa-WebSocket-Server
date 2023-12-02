@@ -1,5 +1,5 @@
-import messageService from "../services/message.service";
-import { Message } from "../interfaces/message";
+import messageService from "../services/message.service.ts";
+import { Message } from "../interfaces/message.ts";
 
 export default (router) => {
   router.get("/chat/history", async (ctx, next) => {

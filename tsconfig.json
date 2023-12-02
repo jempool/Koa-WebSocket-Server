@@ -1,13 +1,26 @@
 {
-  "version": "2.0.2",
   "compilerOptions": {
     "outDir": "./dist/",
     "lib": ["es5", "es6", "DOM"],
     "target": "es6",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "sourceMap": true,
+    "importsNotUsedAsValues": "remove",
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*.ts"],
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true,
+    "files": true,
+    "experimentalResolver": true
+  }
 }

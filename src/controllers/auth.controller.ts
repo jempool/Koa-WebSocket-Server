@@ -1,17 +1,17 @@
 "use strict";
 
-import * as dotenv from "dotenv";
+import dotenv from "dotenv";
 dotenv.config();
-import * as jwt from "jsonwebtoken";
-import * as bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
-import authServices from "../services/auth.service";
+import authServices from "../services/auth.service.ts";
 import {
   ACCESS_TOKEN_EXPIRES_IN,
   REFRESH_TOKEN_EXPIRES_IN,
   BCRYPT_SALT_ROUNDS,
-} from "../utils/constants";
-import { User } from "../interfaces/user";
+} from "../utils/constants.ts";
+import { User } from "../interfaces/user.ts";
 
 export default (router) => {
   router.post("/auth/signup", async (ctx, next) => {
