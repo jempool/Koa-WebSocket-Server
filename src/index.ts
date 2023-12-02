@@ -1,16 +1,16 @@
-import * as Koa from "koa";
-import * as Router from "koa-router";
+import Koa from "koa";
+import Router from "koa-router";
 import { createServer } from "http";
 import mongoose from "mongoose";
-import * as logger from "koa-logger";
-import * as json from "koa-json";
-import * as bodyParser from "koa-bodyparser";
-import * as cors from "@koa/cors";
+import logger from "koa-logger";
+import json from "koa-json";
+import bodyParser from "koa-bodyparser";
+import cors from "@koa/cors";
 
-import { PORT, DATABASE_URL, DATABASE_NAME } from "./utils/constants";
-import socketIO from "./webSockets/websockets";
-import messageController from "./controllers/message.controller";
-import authController from "./controllers/auth.controller";
+import { PORT, DATABASE_URL, DATABASE_NAME } from "./utils/constants.ts";
+import socketIO from "./webSockets/websockets.ts";
+import messageController from "./controllers/message.controller.ts";
+import authController from "./controllers/auth.controller.ts";
 
 const app = new Koa();
 const router = new Router();

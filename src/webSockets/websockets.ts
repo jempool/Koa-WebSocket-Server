@@ -2,7 +2,7 @@
 
 import { Server } from "socket.io";
 
-import dbService from "../services/message.service";
+import dbService from "../services/message.service.ts";
 import {
   WEBSOCKETS_CHAT_EVENT,
   WEBSOCKETS_TYPING_EVENT,
