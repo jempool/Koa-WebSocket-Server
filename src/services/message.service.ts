@@ -1,4 +1,4 @@
-import { Message } from "../models/message.ts";
+import { Message } from "../models/message.model.ts";
 
 export default {
   getAllMessages: async function () {

@@ -9,8 +9,9 @@ import cors from "@koa/cors";
 
 import { PORT, DATABASE_URL, DATABASE_NAME } from "./utils/constants.ts";
 import socketIO from "./webSockets/websockets.ts";
-import messageController from "./controllers/message.controller.ts";
-import authController from "./controllers/auth.controller.ts";
+import { AddMessagesController } from "./controllers/message.controller.ts";
+import { AddAuthController } from "./controllers/auth.controller.ts";
+import { AddTopicsController } from "./controllers/topic.controller.ts";
 
 const app = new Koa();
 const router = new Router();
@@ -19,8 +20,9 @@ const router = new Router();
 app.use(cors());
 
 // Controllers
-messageController(router);
-authController(router);
+AddMessagesController(router);
+AddAuthController(router);
+AddTopicsController(router);
 
 // Middlewares
 app.use(json());
