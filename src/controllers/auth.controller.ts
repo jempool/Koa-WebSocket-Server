@@ -11,7 +11,7 @@ import {
   REFRESH_TOKEN_EXPIRES_IN,
   BCRYPT_SALT_ROUNDS,
 } from "../utils/constants.ts";
-import { User } from "../interfaces/user.ts";
+import { User } from "../interfaces/user.interface.ts";
 
 export default (router) => {
   router.post("/auth/signup", async (ctx, next) => {

@@ -1,4 +1,4 @@
-import { User } from "../models/user.ts";
+import { User } from "../models/user.model.ts";
 
 const getUserByEmail = async (email: string) => {
   return await User.findOne({ email });
