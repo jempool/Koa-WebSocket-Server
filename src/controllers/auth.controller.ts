@@ -13,7 +13,7 @@ import {
 } from "../utils/constants.ts";
 import { User } from "../interfaces/user.interface.ts";
 
-export default (router) => {
+export function AddAuthController(router) {
   router.post("/auth/signup", async (ctx, next) => {
     const _user: User = ctx.request.body;
     if (await authServices.getUserByEmail(_user.email)) {
@@ -62,7 +62,7 @@ export default (router) => {
     }
     await next();
   });
-};
+}
 
 const verifyUser = async (_user: User) => {
   const existingUser = await authServices.getUserByEmail(_user.email);
