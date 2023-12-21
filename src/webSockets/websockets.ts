@@ -6,7 +6,7 @@ import dbService from "../services/message.service.ts";
 import {
   WEBSOCKETS_CHAT_EVENT,
   WEBSOCKETS_TYPING_EVENT,
-} from "./../utils/constants.js";
+} from "../utils/constants.ts";
 
 export default async function (httpServer) {
   const io = new Server(httpServer, {
