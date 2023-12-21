@@ -13,55 +13,53 @@ import {
 } from "../utils/constants.ts";
 import { User } from "../interfaces/user.interface.ts";
 
-export function AddAuthController(router) {
-  router.post("/auth/signup", async (ctx, next) => {
-    const _user: User = ctx.request.body;
-    if (await authServices.getUserByEmail(_user.email)) {
-      ctx.status = 400;
-      ctx.body = {
-        message: `The email ${_user.email} is already associated with an account`,
-      };
-    } else {
-      const newUser = await createUser(_user);
-      const user = { name: newUser.name, email: newUser.email };
-      const tokens = generateTokens(user);
-      ctx.body = { user, ...tokens };
-    }
-    await next();
-  });
+export async function SignUp(ctx, next) {
+  const _user: User = ctx.request.body;
+  if (await authServices.getUserByEmail(_user.email)) {
+    ctx.status = 400;
+    ctx.body = {
+      message: `The email ${_user.email} is already associated with an account`,
+    };
+  } else {
+    const newUser = await createUser(_user);
+    const user = { name: newUser.name, email: newUser.email };
+    const tokens = generateTokens(user);
+    ctx.body = { user, ...tokens };
+  }
+  await next();
+}
 
-  router.post("/auth/login", async (ctx, next) => {
-    const _user: User = ctx.request.body;
-    try {
-      const existingUser = await verifyUser(_user);
-      const user = { name: existingUser.name, email: existingUser.email };
-      const tokens = generateTokens(user);
-      ctx.body = { user, ...tokens };
-    } catch (err) {
-      ctx.status = 400;
-      ctx.body = { message: err.message };
-    }
-    await next();
-  });
+export async function Login(ctx, next) {
+  const _user: User = ctx.request.body;
+  try {
+    const existingUser = await verifyUser(_user);
+    const user = { name: existingUser.name, email: existingUser.email };
+    const tokens = generateTokens(user);
+    ctx.body = { user, ...tokens };
+  } catch (err) {
+    ctx.status = 400;
+    ctx.body = { message: err.message };
+  }
+  await next();
+}
 
-  router.post("/auth/refresh", async (ctx, next) => {
-    const { refreshToken, email } = ctx.request.body;
-    try {
-      const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET) as {
-        user: { name: string; email: string };
-      };
-      if (decoded.user.email !== email) {
-        throw new Error("Invalid token, try login again.");
-      }
-      const user = { name: decoded.user.name, email: decoded.user.email };
-      const tokens = generateTokens(user);
-      ctx.body = { user, ...tokens };
-    } catch (err) {
-      ctx.status = 401;
-      ctx.body = { message: err.message };
+export async function Refresh(ctx, next) {
+  const { refreshToken, email } = ctx.request.body;
+  try {
+    const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET) as {
+      user: { name: string; email: string };
+    };
+    if (decoded.user.email !== email) {
+      throw new Error("Invalid token, try login again.");
     }
-    await next();
-  });
+    const user = { name: decoded.user.name, email: decoded.user.email };
+    const tokens = generateTokens(user);
+    ctx.body = { user, ...tokens };
+  } catch (err) {
+    ctx.status = 401;
+    ctx.body = { message: err.message };
+  }
+  await next();
 }
 
 const verifyUser = async (_user: User) => {
