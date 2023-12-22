@@ -1,15 +1,11 @@
 import { User } from "../models/user.model.ts";
+import { User as IUser } from "../interfaces/user.interface.ts";
 
-const getUserByEmail = async (email: string) => {
+export async function getUserByEmail(email: string) {
   return await User.findOne({ email });
-};
+}
 
-const createUser = async (user: typeof User) => {
+export async function createUser(user: IUser) {
   const newUser = new User({ ...user });
   return await newUser.save();
-};
-
-export default {
-  getUserByEmail,
-  createUser,
-};
+}

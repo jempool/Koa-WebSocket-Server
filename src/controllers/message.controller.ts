@@ -1,4 +1,4 @@
-import messageService from "../services/message.service.ts";
+import * as messageService from "../services/message.service.ts";
 import { Message } from "../interfaces/message.interface.ts";
 
 export async function getAllMessages(ctx, next) {

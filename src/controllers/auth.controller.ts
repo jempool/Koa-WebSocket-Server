@@ -5,7 +5,7 @@ dotenv.config();
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-import authServices from "../services/auth.service.ts";
+import * as authServices from "../services/auth.service.ts";
 import {
   ACCESS_TOKEN_EXPIRES_IN,
   REFRESH_TOKEN_EXPIRES_IN,

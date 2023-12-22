@@ -12,7 +12,7 @@ import { authMiddleware } from "./Middlewares/auth.middleware.ts";
 import { AddMessagesRoutes } from "./routes/message.route.ts";
 import { AddAuthRoutes } from "./routes/auth.route.ts";
 import { AddTopicsRoutes } from "./routes/topic.route.ts";
-import socketIO from "./webSockets/websockets.ts";
+import { socketIO } from "./webSockets/websockets.ts";
 
 const app = new Koa();
 const router = new Router();
