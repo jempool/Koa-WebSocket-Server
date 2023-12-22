@@ -2,13 +2,13 @@
 
 import { Server } from "socket.io";
 
-import dbService from "../services/message.service.ts";
+import * as dbService from "../services/message.service.ts";
 import {
   WEBSOCKETS_CHAT_EVENT,
   WEBSOCKETS_TYPING_EVENT,
-} from "./../utils/constants.js";
+} from "../utils/constants.ts";
 
-export default async function (httpServer) {
+export function socketIO(httpServer) {
   const io = new Server(httpServer, {
     cors: {
       origin: "*",

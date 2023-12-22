@@ -8,10 +8,11 @@ import bodyParser from "koa-bodyparser";
 import cors from "@koa/cors";
 
 import { PORT, DATABASE_URL, DATABASE_NAME } from "./utils/constants.ts";
-import socketIO from "./webSockets/websockets.ts";
-import { AddMessagesController } from "./controllers/message.controller.ts";
-import { AddAuthController } from "./controllers/auth.controller.ts";
-import { AddTopicsController } from "./controllers/topic.controller.ts";
+import { authMiddleware } from "./Middlewares/auth.middleware.ts";
+import { AddMessagesRoutes } from "./routes/message.route.ts";
+import { AddAuthRoutes } from "./routes/auth.route.ts";
+import { AddTopicsRoutes } from "./routes/topic.route.ts";
+import { socketIO } from "./webSockets/websockets.ts";
 
 const app = new Koa();
 const router = new Router();
@@ -19,10 +20,13 @@ const router = new Router();
 // Enable CORS for all routes
 app.use(cors());
 
+// Middlewares
+app.use(authMiddleware);
+
 // Controllers
-AddMessagesController(router);
-AddAuthController(router);
-AddTopicsController(router);
+AddMessagesRoutes(router);
+AddAuthRoutes(router);
+AddTopicsRoutes(router);
 
 // Middlewares
 app.use(json());
